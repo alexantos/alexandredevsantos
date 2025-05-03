@@ -67,4 +67,8 @@ export class AppComponent {
         //Clean up
         document.body.removeChild(form);
     }
+
+    navegaPxnutri() {
+        window.open("https://pxnutri.com.br", "_blank");
+    }
 }
