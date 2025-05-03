@@ -1,4 +1,5 @@
-import { Component, inject } from '@angular/core';
+import { NgIf } from '@angular/common';
+import { Component, inject, OnInit } from '@angular/core';
 // import { RouterOutlet } from '@angular/router';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -9,12 +10,16 @@ import { Router } from '@angular/router';
     imports: [
         // RouterOutlet,
         MatSidenavModule,
+        // NgIf
     ],
     templateUrl: './app.component.html',
     styleUrl: './app.component.css'
 })
 export class AppComponent {
+
     email: string = 'alexandredevsantos@gmail.com';
+
+
     router = inject(Router)
 
     navegaGithub() {
