@@ -61,18 +61,65 @@
             Gosto de desafios que exigem criatividade, pensamento estratégico e capacidade de adaptação. Me motiva
             ver ideias ganhando vida por meio do código e contribuindo para a evolução de negócios e pessoas.
         </div>
-        <div class="flex flex-row text-xl pt-4 text-gray-600 font-light">
-            Pxnutri, sistema para nutricionistas:
-        </div>
-        <img src="images/pxnutri.png" class="w-full cursor-pointer" (click)="navegaPxnutri()">
-        <div class="flex flex-row pt-1 text-md text-gray-600 font-light">
-            O PxNutri é um software de automação desenvolvido por mim e minha esposa Pâmela com muito
-            carinho, o criamos para proporcionarmos praticidade, agilidade e organização. Nós facilitamos a
-            comunicação entre nutricionista e cliente.
-            Através desta ferramenta, o nutricionista consegue acompanhar com
-            mais facilidade o tratamento do paciente. Ele tem vantagens e recursos exclusivos para melhor
-            experiência tecnológica para Nutricionistas e Pacientes.
-            Foi feito utilizando Python e Angular
+
+        <div class="flex flex-col md:grid md:grid-cols-2 gap-4 pt-4">
+            <mat-card class="flex flex-col justify-stretch p-4">
+                <img src="images/pxnutri.png" class="w-full cursor-pointer" (click)="navegaPxnutri()">
+                <div class="flex flex-row text-xl pt-2 text-gray-800 font-light">
+                    Pxnutri
+                </div>
+                <div class="flex flex-row text-md pt-2 text-gray-600 font-light">
+                    Sistema para nutricionistas
+                </div>
+                <div class="flex flex-row py-1 text-sm text-gray-600 font-light">
+                    O PxNutri é um software de automação desenvolvido por mim e minha esposa Pâmela com muito
+                    carinho, o criamos para proporcionarmos praticidade, agilidade e organização. Nós facilitamos a
+                    comunicação entre nutricionista e cliente.
+                    Através desta ferramenta, o nutricionista consegue acompanhar com
+                    mais facilidade o tratamento do paciente. Ele tem vantagens e recursos exclusivos para melhor
+                    experiência tecnológica para Nutricionistas e Pacientes.
+                    Foi feito utilizando Python e Angular
+                </div>
+                <button (click)="navegaPxnutri()"
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded w-full cursor-pointer">
+                    Visualizar sistema
+                </button>
+            </mat-card>
+            <mat-card class="flex flex-col justify-between p-4">
+                <img src="images/diagrama.png" class="w-full cursor-pointer" (click)="navegaDiagrama()">
+                <div class="flex flex-row text-xl pt-2 text-gray-800 font-light">
+                    Diagrama
+                </div>
+                <div class="flex flex-row text-md pt-2 text-gray-600 font-light">
+                    Sistema de diagrama 'UML'
+                </div>
+                <div class="flex flex-row py-1 text-sm text-gray-600 font-light">
+                    Esboço de um diagrama com scroll de tela e conexão de tabelas do modelo entidade-relacionamento no
+                    html utilizando apenas angular e ngx-leader-line para tal finalidade.
+                    Potencial programa para utilização de modelagem interna dos sistemas criados pela PxTech.
+                </div>
+                <button (click)="navegaDiagrama()"
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded w-full cursor-pointer">
+                    Visualizar sistema
+                </button>
+            </mat-card>
+            <mat-card class="flex flex-col justify-between p-4">
+                <img src="images/pontuei.png" class="w-full cursor-pointer" (click)="navegaPxnutri()">
+                <div class="flex flex-row text-xl pt-2 text-gray-800 font-light">
+                    Pontuei
+                </div>
+                <div class="flex flex-row text-md pt-2 text-gray-600 font-light">
+                    Sistema de pontuação (placar)
+                </div>
+                <div class="flex flex-row py-1 text-sm text-gray-600 font-light">
+                    O Pontuei é um sisteminha pessoal que utiliza angular e django para registrar o placar de forma
+                    virtual de uma partida de jogos de baralho, tabuleiro e outros.
+                </div>
+                <button (click)="navegaPontuei()"
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded w-full cursor-pointer">
+                    Visualizar sistema
+                </button>
+            </mat-card>
         </div>
     </div>
 </div>

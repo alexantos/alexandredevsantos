@@ -3,6 +3,8 @@ import { Component, inject, OnInit } from '@angular/core';
 // import { RouterOutlet } from '@angular/router';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatCardModule } from '@angular/material/card';
+
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,6 +12,7 @@ import { Router } from '@angular/router';
     imports: [
         // RouterOutlet,
         MatSidenavModule,
+        MatCardModule
         // NgIf
     ],
     templateUrl: './app.component.html',
@@ -51,24 +54,32 @@ export class AppComponent {
 
     prepareEmail(to: any, subject: any, bodyText: any) {
         var form = document.createElement('form');
-        
+
         //Set the form attributes 
         form.setAttribute('method', 'post');
         form.setAttribute('enctype', 'text/plain');
-        form.setAttribute('action', 'mailto:' + escape(to) + '?Subject=' + escape(subject) + '&Body=' + escape(bodyText ? bodyText : ' ') );
+        form.setAttribute('action', 'mailto:' + escape(to) + '?Subject=' + escape(subject) + '&Body=' + escape(bodyText ? bodyText : ' '));
         form.setAttribute('style', 'display:none');
-        
+
         //Append the form to the body
         document.body.appendChild(form);
-    
+
         //Submit the form
         form.submit();
-        
+
         //Clean up
         document.body.removeChild(form);
     }
 
     navegaPxnutri() {
         window.open("https://pxnutri.com.br", "_blank");
+    }
+
+    navegaPontuei() {
+        window.open("https://github.com/alexantos/pontuei-front", "_blank");
+    }
+
+    navegaDiagrama() {
+        window.open("https://github.com/pxtechinformatica/diagrama", "_blank");
     }
 }
