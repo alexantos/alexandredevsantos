@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Chat, Paginacao, Pergunta } from './models';
 import { Observable } from 'rxjs';
-import { environment } from '../environments/environment.development';
+import { environment } from '../environments/environment';
 
 @Injectable({
     providedIn: 'root'
