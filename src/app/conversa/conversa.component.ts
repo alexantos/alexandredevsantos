@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChatService } from '../chat.service';
-import { Chat, Conversa, Pergunta } from '../models';
+import { Chat, Conversa, Paginacao, Pergunta } from '../models';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
@@ -44,8 +44,8 @@ export class ConversaComponent implements OnInit {
     listarChat() {
         let params = new HttpParams().set('conversa', this.conversa_id)
         this.chatService.listar(params).subscribe({
-            next: (resultado: Chat[]) => {
-                this.chats = resultado;
+            next: (resultado: Paginacao<Chat>) => {
+                this.chats = resultado.results;
             }
         });
     }
@@ -65,6 +65,7 @@ export class ConversaComponent implements OnInit {
             id_conversa: this.conversa_id,
             pergunta: this.pergunta_input.value
         }
+        this.pergunta_input.setValue('');
         this.chatService.pergunta(pergunta).subscribe({
             next: (resultado: Chat) => {
                 console.log('Chat', resultado)

@@ -13,3 +13,10 @@ export interface Chat {
     resposta: string;
     conversa: Conversa;
 }
+
+export interface Paginacao<Entidade> {
+    count: number;
+    next: string;
+    previous: string;
+    results: Entidade[];
+}
