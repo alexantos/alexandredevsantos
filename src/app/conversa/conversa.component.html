@@ -1,0 +1,15 @@
+<mat-form-field appearance="fill" class="flex flex-row w-full" (keyup.enter)="perguntar()">
+    <mat-label>Pergunte para mim</mat-label>
+    <input matInput [formControl]="pergunta_input" placeholder="Faça uma pergunta">
+    <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+    <!-- <mat-hint>Hint</mat-hint> -->
+</mat-form-field>
+<div *ngFor="let chat of chats" class="flex flex-col  pt-2">
+    <div class="flex flex-row">
+        {{chat.pergunta}}
+    </div>
+    <div class="flex flex-row">
+        {{chat.resposta}}
+    </div>
+    <div class="flex flex-row border-b-1 p-2 w-full border-b-neutral-600"></div>
+</div>

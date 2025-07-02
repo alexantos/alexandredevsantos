@@ -6,15 +6,18 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatCardModule } from '@angular/material/card';
 
 import { Router } from '@angular/router';
+import { ConversaComponent } from "./conversa/conversa.component";
 
 @Component({
     selector: 'app-root',
     imports: [
-        // RouterOutlet,
-        MatSidenavModule,
-        MatCardModule
-        // NgIf
-    ],
+    // RouterOutlet,
+    MatSidenavModule,
+    MatCardModule
+    // NgIf
+    ,
+    ConversaComponent
+],
     templateUrl: './app.component.html',
     styleUrl: './app.component.css'
 })
