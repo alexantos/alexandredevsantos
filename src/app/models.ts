@@ -12,6 +12,7 @@ export interface Chat {
     pergunta: string;
     resposta: string;
     conversa: Conversa;
+    'carregando'? : boolean;
 }
 
 export interface Paginacao<Entidade> {

@@ -7,24 +7,27 @@ import { MatCardModule } from '@angular/material/card';
 
 import { Router } from '@angular/router';
 import { ConversaComponent } from "./conversa/conversa.component";
+import { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
+
+
 
 @Component({
     selector: 'app-root',
     imports: [
-    // RouterOutlet,
-    MatSidenavModule,
-    MatCardModule
-    // NgIf
-    ,
-    ConversaComponent
-],
+        MatSidenavModule,
+        MatCardModule,
+        MatDialogModule,
+        ConversaComponent
+    ],
     templateUrl: './app.component.html',
     styleUrl: './app.component.css'
 })
 export class AppComponent {
 
-    email: string = 'alexandredevsantos@gmail.com';
+    readonly dialog = inject(MatDialog);
 
+
+    email: string = 'alexandredevsantos@gmail.com';
 
     router = inject(Router)
 
@@ -84,5 +87,20 @@ export class AppComponent {
 
     navegaDiagrama() {
         window.open("https://github.com/pxtechinformatica/diagrama", "_blank");
+    }
+
+    openDialog() {
+        const dialogConfig = new MatDialogConfig();
+        dialogConfig.position = {
+            bottom: '1em',
+            right: '1em'
+        };
+        const dialogRef = this.dialog.open(ConversaComponent, dialogConfig);
+
+
+
+        dialogRef.afterClosed().subscribe(result => {
+            console.log(`Dialog result: ${result}`);
+        });
     }
 }

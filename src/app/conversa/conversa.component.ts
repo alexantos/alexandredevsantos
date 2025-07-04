@@ -1,12 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ChatService } from '../chat.service';
 import { Chat, Conversa, Paginacao, Pergunta } from '../models';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
-import { NgFor } from '@angular/common';
+import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { ConversaService } from '../conversa.service';
 import { HttpParams } from '@angular/common/http';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 
 
 
@@ -16,7 +19,11 @@ import { HttpParams } from '@angular/common/http';
         MatFormFieldModule,
         ReactiveFormsModule,
         MatInputModule,
+        MatProgressSpinnerModule,
+        MatIconModule,
+        CommonModule,
         NgFor,
+        NgIf,
     ],
     templateUrl: './conversa.component.html',
     styleUrl: './conversa.component.css'
@@ -29,11 +36,14 @@ export class ConversaComponent implements OnInit {
 
     conversa_id: string = ''
 
+    aberto: boolean = false;
+
+    carregando: boolean = false;
+
     constructor(private chatService: ChatService, private conversaService: ConversaService) { }
 
     ngOnInit(): void {
         this.conversa_id = localStorage.getItem('conversa') || '';
-        console.log('conversa id: ', localStorage.getItem('conversa'))
         if (this.conversa_id) {
             this.listarChat();
         } else {
@@ -42,37 +52,45 @@ export class ConversaComponent implements OnInit {
     }
 
     listarChat() {
-        let params = new HttpParams().set('conversa', this.conversa_id)
-        this.chatService.listar(params).subscribe({
-            next: (resultado: Paginacao<Chat>) => {
-                this.chats = resultado.results;
-            }
-        });
+        if (this.conversa_id) {
+            let params = new HttpParams().set('conversa', this.conversa_id)
+            this.chatService.listar(params).subscribe({
+                next: (resultado: Paginacao<Chat>) => {
+                    this.chats = resultado.results;
+                }
+            });
+        }
     }
 
     criaConversa() {
         this.conversaService.criar().subscribe({
             next: (resultado: Conversa) => {
                 localStorage.setItem('conversa', resultado.id)
+                this.conversa_id = resultado.id
                 this.listarChat();
             }
         })
     }
 
     perguntar(): void {
-        console.log('Pergunta', this.pergunta_input.value)
+        this.carregando = true;
         let pergunta: Pergunta = {
             id_conversa: this.conversa_id,
             pergunta: this.pergunta_input.value
         }
+        this.chats.unshift({pergunta: this.pergunta_input.value, carregando: true} as any);
         this.pergunta_input.setValue('');
         this.chatService.pergunta(pergunta).subscribe({
             next: (resultado: Chat) => {
-                console.log('Chat', resultado)
+                this.chats.shift()
                 this.chats.unshift(resultado);
-                // this.chats = resultado;
+                this.carregando = false;
             }
         });
+    }
+
+    abrirFechar() {
+        this.aberto = !this.aberto;
     }
 
 }
