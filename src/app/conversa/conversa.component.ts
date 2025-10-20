@@ -56,7 +56,12 @@ export class ConversaComponent implements OnInit {
             let params = new HttpParams().set('conversa', this.conversa_id)
             this.chatService.listar(params).subscribe({
                 next: (resultado: Chat[]) => {
-                    this.chats = resultado;
+                    if (resultado.length == 0) {
+                        localStorage.removeItem('conversa');
+                        this.criaConversa();
+                    } else {
+                        this.chats = resultado;
+                    }
                 }
             });
         }
@@ -78,7 +83,7 @@ export class ConversaComponent implements OnInit {
             id_conversa: this.conversa_id,
             pergunta: this.pergunta_input.value
         }
-        this.chats.unshift({pergunta: this.pergunta_input.value, carregando: true} as any);
+        this.chats.unshift({ pergunta: this.pergunta_input.value, carregando: true } as any);
         this.pergunta_input.setValue('');
         this.chatService.pergunta(pergunta).subscribe({
             next: (resultado: Chat) => {
