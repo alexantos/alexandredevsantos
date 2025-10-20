@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Chat, Paginacao, Pergunta } from './models';
+import { Chat, Pergunta } from './models';
 import { Observable } from 'rxjs';
 import { environment } from '../environments/environment';
 
@@ -11,8 +11,8 @@ export class ChatService {
 
     constructor(private httpClient: HttpClient) { }
 
-    listar(params: HttpParams = new HttpParams()): Observable<Paginacao<Chat>> {
-        return this.httpClient.get<Paginacao<Chat>>(environment.url_back + '/chats/', { params: params })
+    listar(params: HttpParams = new HttpParams()): Observable<Chat[]> {
+        return this.httpClient.get<Chat[]>(environment.url_back + '/chats/', { params: params })
     }
 
     pergunta(pergunta: Pergunta): Observable<any> {

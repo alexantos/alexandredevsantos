@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ChatService } from '../chat.service';
-import { Chat, Conversa, Paginacao, Pergunta } from '../models';
+import { Chat, Conversa, Pergunta } from '../models';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
@@ -55,8 +55,8 @@ export class ConversaComponent implements OnInit {
         if (this.conversa_id) {
             let params = new HttpParams().set('conversa', this.conversa_id)
             this.chatService.listar(params).subscribe({
-                next: (resultado: Paginacao<Chat>) => {
-                    this.chats = resultado.results;
+                next: (resultado: Chat[]) => {
+                    this.chats = resultado;
                 }
             });
         }

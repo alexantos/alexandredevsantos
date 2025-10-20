@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Conversa, Paginacao } from './models';
+import { Conversa } from './models';
 import { Observable } from 'rxjs';
 import { environment } from '../environments/environment';
 
@@ -12,8 +12,8 @@ export class ConversaService {
     constructor(private httpClient: HttpClient) { }
 
 
-    pegarId(id: string): Observable<Paginacao<Conversa>> {
-        return this.httpClient.get<Paginacao<Conversa>>(environment.url_back + '/conversas/' + id)
+    pegarId(id: string): Observable<Conversa> {
+        return this.httpClient.get<Conversa>(environment.url_back + '/conversas/' + id)
     }
 
     criar(conversa: any = {}): Observable<Conversa> {
